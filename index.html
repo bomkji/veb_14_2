@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Manipulation</title>
+</head>
+<body>
+    <h1>Array Manipulation Results</h1>
+    <pre id="output"></pre>
+
+    <script>
+        // Генерація масиву з 15 елементів
+        let arr = [];
+        for (let i = 0; i < 15; i++) {
+            arr.push(Math.floor(Math.random() * 100)); // Генерація випадкових чисел від 0 до 99
+        }
+
+        const outputElement = document.getElementById("output");
+
+        function log(message) {
+            outputElement.textContent += message + "\n";
+        }
+
+        log("Початковий масив: " + arr.join(", "));
+
+        // Знаходимо максимальний елемент і міняємо його місцями з останнім
+        let maxIndex = 0;
+        for (let i = 1; i < arr.length; i++) {
+            if (arr[i] > arr[maxIndex]) {
+                maxIndex = i;
+            }
+        }
+        [arr[maxIndex], arr[arr.length - 1]] = [arr[arr.length - 1], arr[maxIndex]];
+        log("Максимальний з останнім: " + arr.join(", "));
+
+        // Знаходимо мінімальний елемент і міняємо його місцями з попереднім
+        let minIndex = 0;
+        for (let i = 1; i < arr.length; i++) {
+            if (arr[i] < arr[minIndex]) {
+                minIndex = i;
+            }
+        }
+        if (minIndex > 0) {
+            [arr[minIndex], arr[minIndex - 1]] = [arr[minIndex - 1], arr[minIndex]];
+        }
+        log("Мінімальний з попереднім: " + arr.join(", "));
+
+        // Знаходимо мінімальний елемент і міняємо його місцями з наступним
+        minIndex = 0;
+        for (let i = 1; i < arr.length; i++) {
+            if (arr[i] < arr[minIndex]) {
+                minIndex = i;
+            }
+        }
+        if (minIndex < arr.length - 1) {
+            [arr[minIndex], arr[minIndex + 1]] = [arr[minIndex + 1], arr[minIndex]];
+        }
+        log("Мінімальний з наступним: " + arr.join(", "));
+
+        // Знаходимо максимальний елемент і міняємо його місцями з шостим елементом
+        maxIndex = 0;
+        for (let i = 1; i < arr.length; i++) {
+            if (arr[i] > arr[maxIndex]) {
+                maxIndex = i;
+            }
+        }
+        if (arr.length > 5) {
+            [arr[maxIndex], arr[5]] = [arr[5], arr[maxIndex]];
+        }
+        log("Максимальний з шостим: " + arr.join(", "));
+
+        // Знаходимо максимальний елемент, надаємо його значення останньому елементу масиву, а замість максимального -1
+        maxIndex = 0;
+        for (let i = 1; i < arr.length; i++) {
+            if (arr[i] > arr[maxIndex]) {
+                maxIndex = i;
+            }
+        }
+        arr[arr.length - 1] = arr[maxIndex];
+        arr[maxIndex] = -1;
+        log("Максимальний в кінець, замість нього -1: " + arr.join(", "));
+
+        // Знаходимо мінімальний елемент, присвоюємо його значення першому елементу масиву, а замість мінімального записуємо 9999
+        minIndex = 0;
+        for (let i = 1; i < arr.length; i++) {
+            if (arr[i] < arr[minIndex]) {
+                minIndex = i;
+            }
+        }
+        arr[0] = arr[minIndex];
+        arr[minIndex] = 9999;
+        log("Мінімальний в перший, замість нього 9999: " + arr.join(", "));
+
+        // Знаходимо мінімальний елемент і міняємо його місцями з третім елементом масиву
+        minIndex = 0;
+        for (let i = 1; i < arr.length; i++) {
+            if (arr[i] < arr[minIndex]) {
+                minIndex = i;
+            }
+        }
+        if (arr.length > 2) {
+            [arr[minIndex], arr[2]] = [arr[2], arr[minIndex]];
+        }
+        log("Мінімальний з третім: " + arr.join(", "));
+
+        // Знаходимо мінімальний елемент і замінюємо його на суму першого та останнього елементів
+        minIndex = 0;
+        for (let i = 1; i < arr.length; i++) {
+            if (arr[i] < arr[minIndex]) {
+                minIndex = i;
+            }
+        }
+        arr[minIndex] = arr[0] + arr[arr.length - 1];
+        log("Мінімальний замінено на суму першого і останнього: " + arr.join(", "));
+
+        // Знаходимо максимальний елемент і міняємо його місцями з передостаннім елементом
+        maxIndex = 0;
+        for (let i = 1; i < arr.length; i++) {
+            if (arr[i] > arr[maxIndex]) {
+                maxIndex = i;
+            }
+        }
+        if (arr.length > 1) {
+            [arr[maxIndex], arr[arr.length - 2]] = [arr[arr.length - 2], arr[maxIndex]];
+        }
+        log("Максимальний з передостаннім: " + arr.join(", "));
+
+        // Знаходимо мінімальний елемент, присвоюємо його значення останньому елементу масиву, а замість мінімального записуємо значення 3N
+        minIndex = 0;
+        for (let i = 1; i < arr.length; i++) {
+            if (arr[i] < arr[minIndex]) {
+                minIndex = i;
+            }
+        }
+        arr[arr.length - 1] = arr[minIndex];
+        arr[minIndex] = 3 * arr.length;
+        log("Мінімальний в останній, замість нього 3N: " + arr.join(", "));
+
+        // Знаходимо мінімальний елемент і міняємо його місцями з елементом масиву за заданим номером
+        let givenIndex = 4; // Заданий номер (наприклад, 4)
+        minIndex = 0;
+        for (let i = 1; i < arr.length; i++) {
+            if (arr[i] < arr[minIndex]) {
+                minIndex = i;
+            }
+        }
+        if (givenIndex >= 0 && givenIndex < arr.length) {
+            [arr[minIndex], arr[givenIndex]] = [arr[givenIndex], arr[minIndex]];
+        }
+        log("Мінімальний з заданим: " + arr.join(", "));
+
+        // Знаходимо максимальний елемент і міняємо його місцями з другим елементом масиву
+        maxIndex = 0;
+        for (let i = 1; i < arr.length; i++) {
+            if (arr[i] > arr[maxIndex]) {
+                maxIndex = i;
+            }
+        }
+        if (arr.length > 1) {
+            [arr[maxIndex], arr[1]] = [arr[1], arr[maxIndex]];
+        }
+        log("Максимальний з другим: " + arr.join(", "));
+
+        // Знаходимо мінімальний елемент і міняємо його місцями з передостаннім елементом масиву
+        minIndex = 0;
+        for (let i = 1; i < arr.length; i++) {
+            if (arr[i] < arr[minIndex]) {
+                minIndex = i;
+            }
+        }
+        if (arr.length > 1) {
+            [arr[minIndex], arr[arr.length - 2]] = [arr[arr.length - 2], arr[minIndex]];
+        }
+        log("Мінімальний з передостаннім: " + arr.join(", "));
+    </script>
+</body>
+</html>
